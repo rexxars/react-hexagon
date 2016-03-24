@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "bengler",
+    "bengler/react"
+  ],
+
+  "rules": {
+    "react/jsx-closing-bracket-location": 0
+  }
+}

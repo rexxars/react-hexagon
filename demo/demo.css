@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #2e2e2e; color: #fff; }
+#demo { padding: 0 15px; font-size: 16px; }
+#demo svg { width: 33.333333333%; }
+#demo svg text {
+  pointer-events: none;
+  text-shadow: 1px 1px 5px #000;
+  text-anchor: middle;
+  font-size: 60px;
+  font-weight: bold;
+  fill: rgba(255, 255, 255, 0.90);
+  alignment-baseline: middle;
+}
+
+#demo .row:nth-child(1n+2) {
+  margin-top: -10.3%;
+}
+
+#demo .row:nth-child(even) :first-child {
+  margin-left: 16.666666667%;
+}
