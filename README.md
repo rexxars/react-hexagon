@@ -34,7 +34,7 @@ React.render(
 
 ## Props
 
-All properties are optional. See defaults.
+All properties are optional.
 
 * `className` - Class name of SVG element.
 * `href` - Link target, if any. Hexagon will only be wrapped in an anchor if this is set.
