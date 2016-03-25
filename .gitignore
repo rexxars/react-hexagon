@@ -35,3 +35,4 @@ node_modules
 # Compiled JS
 lib
 umd
+demo/bundle.js
