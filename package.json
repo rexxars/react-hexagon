@@ -1,6 +1,6 @@
 {
   "name": "react-hexagon",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "React component that renders a hexagon using SVG",
   "main": "lib/Hexagon.js",
   "umd": "umd/Hexagon.js",
