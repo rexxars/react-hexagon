@@ -16,6 +16,8 @@ See [the demos page](http://rexxars.github.io/react-hexagon/) for some demos.
 npm install --save react-hexagon
 ```
 
+Size of component is about ~1.5kB after gzip.
+
 ## Basic usage
 
 ```javascript
