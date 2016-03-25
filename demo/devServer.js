@@ -4,7 +4,7 @@ const express = require('express')
 const webpack = require('webpack')
 const devMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
-const config = require('./webpack.config.dev')
+const config = require('../webpack.config.dev')
 
 const port = process.env.PORT || 3000
 const app = express()
@@ -17,10 +17,10 @@ app.use(devMiddleware(compiler, {
 
 app.use(hotMiddleware(compiler))
 
-app.use('/', express.static('demo'))
+app.use('/', express.static(__dirname))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'demo', 'index.html'))
+  res.sendFile(path.join(__dirname, 'index.html'))
 })
 
 app.listen(port, err => {
