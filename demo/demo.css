@@ -7,7 +7,7 @@ body { background: #2e2e2e; color: #fff; font-family: sans-serif; }
   pointer-events: none;
   text-shadow: 1px 1px 5px #000;
   text-anchor: middle;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
   fill: rgba(255, 255, 255, 0.90);
   color: rgba(255, 255, 255, 0.90);

@@ -130,6 +130,7 @@ Hexagon.propTypes = {
   backgroundImage: string,
   backgroundWidth: number,
   backgroundHeight: number,
+  backgroundScale: number,
   backgroundSize: number,
   hexProps: object,
   style: object,
@@ -137,7 +138,7 @@ Hexagon.propTypes = {
 }
 
 Hexagon.defaultProps = {
-  diagonal: 645,
+  diagonal: 500,
   style: {}
 }
 

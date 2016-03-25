@@ -68,7 +68,8 @@ class HexDemo extends React.Component {
           { /* Linkable hexagons? Awesome. */ }
           <Hexagon
             style={{stroke: '#c0392b'}}
-            backgroundImage="img/bird.jpg"
+            backgroundImage="https://espen.codes/assets/img/me.jpg"
+            backgroundScale={1.05}
             href="https://espen.codes/"
             target="_blank">
 
@@ -85,8 +86,10 @@ class HexDemo extends React.Component {
 
           <Hexagon style={{stroke: '#f1c40f'}} backgroundImage="img/coaster.jpg" />
 
-          <Hexagon style={{stroke: '#16a085', strokeWidth: 4, strokeDasharray: '5,10'}}>
-            <text x="50%" y="50%">Thin stroke!</text>
+          <Hexagon
+            style={{stroke: '#16a085', strokeWidth: 4, strokeDasharray: '5,10'}}
+            backgroundImage="img/bird.jpg">
+            <text x="50%" y="70%">Thin stroke!</text>
           </Hexagon>
         </div>
       </section>
