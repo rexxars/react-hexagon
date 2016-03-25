@@ -6,6 +6,8 @@ const hexRatio = 0.868217054
 const numSides = 6
 const centerAng = 2 * Math.PI / numSides
 
+let bgIndex = 0
+
 function round(num) {
   return Number(num.toFixed(3))
 }
@@ -69,9 +71,14 @@ function applyOffset(bounds, offset) {
   }
 }
 
+function getBackgroundId() {
+  return `bg-${++bgIndex}`
+}
+
 function Hexagon(props) {
+  const bgId = props.backgroundImage && getBackgroundId()
   const polyStyle = defaults({
-    fill: props.backgroundImage ? 'url(#bg)' : 'none',
+    fill: props.backgroundImage ? `url(#${bgId})` : 'none',
     stroke: '#42873f',
     strokeWidth: props.diagonal * 0.02,
     cursor: props.onClick && 'pointer'
@@ -88,6 +95,17 @@ function Hexagon(props) {
     bounds.maxY + (bounds.minY < 0 ? Math.abs(bounds.minY) : 0)
   ].join(' ')
 
+  const polygon = (
+    <polygon
+      {...props.hexProps}
+      onClick={props.onClick}
+      style={polyStyle}
+      points={points.map(point => point.join(',')).join(' ')}
+    />
+  )
+
+  const anchor = props.href && <a xlinkHref={props.href} target={props.target}>{polygon}</a>
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -95,13 +113,8 @@ function Hexagon(props) {
       className={props.className}
       viewBox={viewBox}>
 
-      {props.backgroundImage && <BackgroundDef {...props} />}
-
-      <polygon
-        onClick={props.onClick}
-        style={polyStyle}
-        points={points.map(point => point.join(',')).join(' ')}
-      />
+      {props.backgroundImage && <BackgroundDef id={bgId} {...props} />}
+      {anchor || polygon}
 
       {props.children}
     </svg>
@@ -112,11 +125,14 @@ Hexagon.propTypes = {
   diagonal: number,
   className: string,
   onClick: func,
+  href: string,
+  target: string,
   backgroundImage: string,
   backgroundWidth: number,
   backgroundHeight: number,
   backgroundSize: number,
-  style: object, // eslint-disable-line react/forbid-prop-types
+  hexProps: object,
+  style: object,
   children: node
 }
 

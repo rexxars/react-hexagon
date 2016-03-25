@@ -1,16 +1,22 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body { background: #2e2e2e; color: #fff; }
-#demo { padding: 0 15px; font-size: 16px; }
+body { background: #2e2e2e; color: #fff; font-family: sans-serif; }
+#demo { padding: 0 15px; font-size: 16px; max-width: 800px; margin: 0 auto; }
 #demo svg { width: 33.333333333%; }
-#demo svg text {
+#demo svg text, #demo .foreign-object p {
   pointer-events: none;
   text-shadow: 1px 1px 5px #000;
   text-anchor: middle;
   font-size: 60px;
   font-weight: bold;
   fill: rgba(255, 255, 255, 0.90);
+  color: rgba(255, 255, 255, 0.90);
   alignment-baseline: middle;
+}
+
+#demo .text text, #demo .text p {
+  pointer-events: auto;
+  text-shadow: 1px 1px 20px #000;
 }
 
 #demo .row:nth-child(1n+2) {
@@ -20,3 +26,17 @@ body { background: #2e2e2e; color: #fff; }
 #demo .row:nth-child(even) :first-child {
   margin-left: 16.666666667%;
 }
+
+#demo .umbrella {
+  z-index: 10;
+  position: relative;
+}
+
+#demo .umbrella polygon, #demo .umbrella path {
+  transition: fill 0.5s, stroke 0.5s;
+}
+
+#demo .umbrella path {
+  pointer-events: none;
+}
+

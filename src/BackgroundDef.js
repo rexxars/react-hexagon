@@ -7,7 +7,7 @@ function BackgroundDef(props) {
   const height = props.backgroundHeight || props.backgroundSize || props.diagonal
   return (
     <defs>
-      <pattern id="bg" width={width} height={height} patternUnits="userSpaceOnUse">
+      <pattern id={props.id} width={width} height={height} patternUnits="userSpaceOnUse">
         <image width="100%" height="100%" xlinkHref={props.backgroundImage} />
       </pattern>
     </defs>
@@ -15,6 +15,7 @@ function BackgroundDef(props) {
 }
 
 BackgroundDef.propTypes = {
+  id: string.isRequired,
   backgroundImage: string.isRequired,
   backgroundWidth: number,
   backgroundHeight: number,
