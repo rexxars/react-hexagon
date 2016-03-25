@@ -13,7 +13,7 @@ See [the demos page](http://rexxars.github.io/react-hexagon/) for some demos.
 `react-hexagon` can be installed using [npm](https://npmjs.org/):
 
 ```
-npm install react-hexagon
+npm install --save react-hexagon
 ```
 
 ## Basic usage
