@@ -46,10 +46,13 @@ class HexDemo extends React.Component {
 
           { /* Text + background color */ }
           <Hexagon style={{fill: '#8e44ad'}} className="text">
-            <text x="50%" y="60%">SVG text!</text>
+            <text x="50%" y="65%">SVG text!</text>
 
-            <foreignObject className="foreign-object" x="0%" y="30%" width="100%">
-              <p style={{padding: 20, textAlign: 'center'}}>HTML text!</p>
+            <foreignObject className="foreign-object" x="0%" y="25%" width="100%">
+              <p style={{padding: 20, textAlign: 'center'}}>
+                HTML text!<br />
+                <span style={{fontSize: '0.5em'}}>(not universally supported)</span>
+              </p>
             </foreignObject>
           </Hexagon>
         </div>
