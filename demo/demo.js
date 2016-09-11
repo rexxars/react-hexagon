@@ -111,7 +111,7 @@ class HexDemo extends React.Component {
         <div className="flat-row">
           <Hexagon
             flatTop
-            style={{stroke: 'orange'}}
+            style={{stroke: 'orange', strokeWidth: 25}}
             backgroundImage="img/red-panda.jpg"
             backgroundScale={1.1}
           />

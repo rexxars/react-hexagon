@@ -72,26 +72,12 @@ function defaults(defs, usr) {
   return target
 }
 
-function reduceBounds(extremes, point) {
+function substractMinBounds(extremes) {
   return {
-    maxX: Math.ceil(Math.max(extremes.maxX, point[0])),
-    maxY: Math.ceil(Math.max(extremes.maxY, point[1])),
-    minX: Math.floor(Math.min(extremes.minX, point[0])),
-    minY: Math.floor(Math.min(extremes.minY, point[1]))
-  }
-}
-
-function applyOffset(bounds, offset, flatTop) {
-  return flatTop ? {
-    minX: bounds.minX - offset,
-    minY: bounds.minY - offset,
-    maxX: bounds.maxX + offset,
-    maxY: bounds.maxY - (offset * 2)
-  } : {
-    minX: bounds.minX - offset,
-    minY: bounds.minY - offset,
-    maxX: bounds.maxX + (offset / 3),
-    maxY: bounds.maxY + (offset / 1.5),
+    maxX: extremes.maxX - extremes.minX,
+    maxY: extremes.maxY - extremes.minY,
+    minX: extremes.minX,
+    minY: extremes.minY
   }
 }
 
@@ -116,8 +102,9 @@ function Hexagon(props) {
   }
 
   const offset = polyStyle.strokeWidth
+  const halfStroke = Math.ceil(offset / 2)
   const points = props.flatTop ? getFlatTopPoints(props, offset) : getPoints(props, offset)
-  const bounds = applyOffset(points.reduce(reduceBounds, baseBounds), offset, props.flatTop)
+  const bounds = substractMinBounds(points.reduce(reduceBounds, baseBounds))
   const viewBox = [
     bounds.minX,
     bounds.minY,
@@ -149,6 +136,15 @@ function Hexagon(props) {
       {props.children}
     </svg>
   )
+
+  function reduceBounds(extremes, point) {
+    return {
+      maxX: Math.ceil(Math.max(extremes.maxX, point[0] + halfStroke)),
+      maxY: Math.ceil(Math.max(extremes.maxY, point[1] + halfStroke)),
+      minX: Math.floor(Math.min(extremes.minX, point[0] - halfStroke)),
+      minY: Math.floor(Math.min(extremes.minY, point[1] - halfStroke))
+    }
+  }
 }
 
 Hexagon.propTypes = {
