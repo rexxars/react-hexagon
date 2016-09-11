@@ -8,7 +8,7 @@ class HexDemo extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {strokeStyle: null, umbrellaColor: '#47a1de'}
+    this.state = {strokeStyle: null, umbrellaColor: '#2ecc71'}
     this.handleStrokeToggle = this.handleStrokeToggle.bind(this)
     this.handleUmbrellaColorChange = this.handleUmbrellaColorChange.bind(this)
   }
@@ -21,7 +21,7 @@ class HexDemo extends React.Component {
 
   handleUmbrellaColorChange(event) {
     this.setState({
-      umbrellaColor: event.type === 'mouseenter' ? '#ecf0f1' : '#47a1de'
+      umbrellaColor: event.type === 'mouseenter' ? '#ecf0f1' : '#2ecc71'
     })
   }
 
@@ -61,11 +61,19 @@ class HexDemo extends React.Component {
           { /* An SVG-umbrella inside an SVG-hexagon?! How pretty! */ }
           <HoverHexagon
             className="umbrella"
-            style={{stroke: this.state.umbrellaColor, fill: 'rgba(0, 0, 0, 0.01)'}}
+            style={{stroke: this.state.umbrellaColor, fill: 'url(#blueHexagonGradient)'}}
             onEnter={this.handleUmbrellaColorChange}
             onLeave={this.handleUmbrellaColorChange}>
             <Umbrella fill={this.state.umbrellaColor} />
             <text x="50%" y="60%">SVG-umbrella!</text>
+            <text x="50%" y="70%" style={{fontSize: '30px'}}>Gradient background!</text>
+
+            <defs>
+              <linearGradient id="blueHexagonGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#3498db"></stop>
+                <stop offset="100%" stopColor="#2c3e50"></stop>
+              </linearGradient>
+            </defs>
           </HoverHexagon>
 
           { /* Linkable hexagons? Awesome. */ }
