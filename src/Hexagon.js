@@ -1,7 +1,7 @@
 import React from 'react'
 import BackgroundDef from './BackgroundDef'
 
-const {number, string, object, node, func} = React.PropTypes
+const {number, string, object, node, func, bool} = React.PropTypes
 const hexRatio = 0.868217054
 const numSides = 6
 const centerAng = 2 * Math.PI / numSides
@@ -17,8 +17,8 @@ function toRadians(degs) {
 }
 
 function getPoints(props, offset) {
-  const cy = (props.diagonal / 2)
-  const cx = ((props.diagonal * hexRatio) / 2)
+  const cy = props.diagonal / 2
+  const cx = (props.diagonal * hexRatio) / 2
 
   const startAng = toRadians(90)
   const radius = cy
@@ -35,13 +35,23 @@ function getPoints(props, offset) {
   return vertex.map(point => point.map(round))
 }
 
-function reduceBounds(extremes, point) {
-  return {
-    maxX: Math.ceil(Math.max(extremes.maxX, point[0])),
-    maxY: Math.ceil(Math.max(extremes.maxY, point[1])),
-    minX: Math.floor(Math.min(extremes.minX, point[0])),
-    minY: Math.floor(Math.min(extremes.minY, point[1]))
-  }
+function getFlatTopPoints(props, offset) {
+  const y = props.diagonal / 2
+  const cx = (hexRatio * props.diagonal) / 2
+  const x = cx + (y - cx)
+  const radius = y
+
+  const cos = 0.866 * radius
+  const sin = 0.5 * radius
+
+  return [
+    [x - sin, y - cos],
+    [x + sin, y - cos],
+    [x + radius, y],
+    [x + sin, y + cos],
+    [x - sin, y + cos],
+    [x - radius, y],
+  ].map(point => point.map(round))
 }
 
 function defaults(defs, usr) {
@@ -62,12 +72,26 @@ function defaults(defs, usr) {
   return target
 }
 
-function applyOffset(bounds, offset) {
+function reduceBounds(extremes, point) {
   return {
-    maxX: bounds.maxX + (offset / 2),
+    maxX: Math.ceil(Math.max(extremes.maxX, point[0])),
+    maxY: Math.ceil(Math.max(extremes.maxY, point[1])),
+    minX: Math.floor(Math.min(extremes.minX, point[0])),
+    minY: Math.floor(Math.min(extremes.minY, point[1]))
+  }
+}
+
+function applyOffset(bounds, offset, flatTop) {
+  return flatTop ? {
+    minX: bounds.minX - offset,
+    minY: bounds.minY - offset,
+    maxX: bounds.maxX + offset,
+    maxY: bounds.maxY - (offset * 2)
+  } : {
+    minX: bounds.minX - offset,
+    minY: bounds.minY - offset,
+    maxX: bounds.maxX + (offset / 3),
     maxY: bounds.maxY + (offset / 1.5),
-    minX: bounds.minX,
-    minY: bounds.minY
   }
 }
 
@@ -84,10 +108,16 @@ function Hexagon(props) {
     cursor: props.onClick && 'pointer'
   }, props.style)
 
-  const baseBounds = {maxX: 0, maxY: 0, minX: 0, minY: 0}
+  const baseBounds = {
+    maxX: -Infinity,
+    maxY: -Infinity,
+    minX: +Infinity,
+    minY: +Infinity
+  }
+
   const offset = polyStyle.strokeWidth
-  const points = getPoints(props, offset)
-  const bounds = applyOffset(points.reduce(reduceBounds, baseBounds), offset)
+  const points = props.flatTop ? getFlatTopPoints(props, offset) : getPoints(props, offset)
+  const bounds = applyOffset(points.reduce(reduceBounds, baseBounds), offset, props.flatTop)
   const viewBox = [
     bounds.minX,
     bounds.minY,
@@ -127,6 +157,7 @@ Hexagon.propTypes = {
   onClick: func,
   href: string,
   target: string,
+  flatTop: bool,
   backgroundImage: string,
   backgroundWidth: number,
   backgroundHeight: number,
@@ -139,6 +170,7 @@ Hexagon.propTypes = {
 
 Hexagon.defaultProps = {
   diagonal: 500,
+  flatTop: false,
   style: {}
 }
 

@@ -41,6 +41,7 @@ All properties are optional.
 * `className` - Class name of SVG element.
 * `href` - Link target, if any. Hexagon will only be wrapped in an anchor if this is set.
 * `target` - Target of link. Same role as in regular HTML.
+* `flatTop` - Switches hexagon style to have a flat top (basically, rotate the hexagon by 90°). Default: `false`
 * `backgroundImage` - URL to a background image. Recommend that the image has the same aspect ratio as a hexagon. See [background sizing](#background-sizing) notes below.
 * `style` - Styles for the hexagon element.
 * `children` - Children nodes to put inside SVG element.
@@ -51,7 +52,7 @@ All properties are optional.
 
 Sizing and aligning the background image can be slightly tricky. We recommend that you try to stick with images that has the same aspect ratio as a hexagon, or square images that can be slightly scaled.
 
-By default, if you give the hexagon element a background image with a different aspect ratio, it'll try to center the image horizontally/vertically while maintaining the original image aspect ratio. For square images, this means you'll end up with a small border at the top and bottom of the hexagon. If you instead want to upscale the image to fill the hexagon, use the `backgroundScale` property (see below).
+By default, if you give the hexagon element a background image with a different aspect ratio, it'll try to center the image horizontally/vertically while maintaining the original image aspect ratio. For square images, this means you'll end up with a small border. If you instead want to upscale the image to fill the hexagon, use the `backgroundScale` property (see below).
 
 Background sizing properties are resolved in the following order (first one defined wins):
 

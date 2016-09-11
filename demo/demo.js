@@ -103,6 +103,30 @@ class HexDemo extends React.Component {
             <text x="50%" y="70%">Thin stroke!</text>
           </Hexagon>
         </div>
+
+        <div>
+          <h2>Flat top style</h2>
+        </div>
+
+        <div className="flat-row">
+          <Hexagon
+            flatTop
+            style={{stroke: 'orange'}}
+            backgroundImage="img/red-panda.jpg"
+            backgroundScale={1.1}
+          />
+
+          <Hexagon
+            flatTop
+            backgroundImage="img/cabin.jpg"
+          />
+
+          <Hexagon
+            flatTop
+            style={{stroke: '#16a085', strokeDasharray: '5,10'}}
+            backgroundImage="img/trains.jpg"
+          />
+        </div>
       </section>
     )
   }
