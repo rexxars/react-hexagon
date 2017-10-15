@@ -1,6 +1,5 @@
 import React from 'react'
-
-const {number, string, bool} = React.PropTypes
+import {number, string, bool} from 'prop-types'
 
 function getSize(props) {
   let width = props.diagonal

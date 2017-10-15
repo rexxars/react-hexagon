@@ -1,7 +1,7 @@
 import React from 'react'
+import {number, string, object, node, func, bool} from 'prop-types'
 import BackgroundDef from './BackgroundDef'
 
-const {number, string, object, node, func, bool} = React.PropTypes
 const hexRatio = 0.868217054
 const numSides = 6
 const centerAng = 2 * Math.PI / numSides
