@@ -45,6 +45,7 @@ function BackgroundDef(props) {
   )
 }
 
+/* eslint-disable react/no-typos */
 BackgroundDef.propTypes = {
   id: string.isRequired,
   flatTop: bool,

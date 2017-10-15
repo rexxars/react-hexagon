@@ -18,7 +18,7 @@ module.exports = {
     })
   ],
   externals: {
-    'react': {
+    react: {
       root: 'React',
       commonjs: 'react',
       commonjs2: 'react',
@@ -32,10 +32,12 @@ module.exports = {
     }
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        include: path.join(__dirname, 'src')
+      }
+    ]
   }
 }

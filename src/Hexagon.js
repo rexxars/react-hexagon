@@ -27,8 +27,8 @@ function getPoints(props, offset) {
   for (let i = 0; i < numSides; i++) {
     const ang = startAng + (i * centerAng)
     vertex.push([
-      (offset / 2) + cx + radius * Math.cos(ang), // X
-      (offset / 1.5) + cy - radius * Math.sin(ang)  // Y
+      (offset / 2) + cx + (radius * Math.cos(ang)), // X
+      (offset / 1.5) + cy - (radius * Math.sin(ang)) // Y
     ])
   }
 

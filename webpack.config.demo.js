@@ -11,22 +11,21 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   externals: {
-    'react': 'React',
+    react: 'React',
     'react-dom': 'ReactDOM'
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: [
-        path.join(__dirname, 'src'),
-        path.join(__dirname, 'demo')
-      ]
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader'],
+        include: [
+          path.join(__dirname, 'src'),
+          path.join(__dirname, 'demo')
+        ]
+      }
+    ]
   }
 }
