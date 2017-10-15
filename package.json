@@ -12,7 +12,7 @@
     "clean": "rimraf lib && rimraf umd",
     "test": "eslint .",
     "postpublish": "npm run clean",
-    "prepublish": "in-publish && npm run build || not-in-publish",
+    "prepublishOnly": "npm run build",
     "start": "node demo/devServer.js"
   },
   "repository": {
@@ -55,8 +55,5 @@
   "peerDependencies": {
     "react": ">=0.14.0",
     "react-dom": ">=0.14.0"
-  },
-  "dependencies": {
-    "in-publish": "^2.0.0"
   }
 }
